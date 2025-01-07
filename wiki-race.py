@@ -1,5 +1,4 @@
 import requests
-import random
 from bs4 import BeautifulSoup
 import wikipediaapi
 from sentence_transformers import SentenceTransformer
@@ -15,14 +14,14 @@ start = input("Enter starting page: ")
 end = input("Enter ending page: ")
 current = start
 #get the best matching wikipedia page based on user input
+#utilized code from kmaurinjones to use the wikipedia search function to find best matching page from input
 def get_wiki_page(term):
     search = f"https://en.wikipedia.org/w/index.php?search={'+'.join(term.strip().split())}&title=Special:Search&profile=advanced&fulltext=1&ns0=1"
     soup = BeautifulSoup(requests.get(search).content, "html.parser")
     return soup.find("div", class_ = "mw-search-result-heading").a['href'].replace("/wiki/", "").strip()
 
 #get summary of starting topic
-wiki_article = 'Python_(programming_language)'
-page_py = wiki_wiki.page(wiki_article)
+page_py = wiki_wiki.page('nintendo')
 print(page_py.summary[0:60])
 
 #dictionary of links found on the current wikipedia page
